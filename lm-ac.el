@@ -1,0 +1,32 @@
+(require 'url)
+(require 'subr-x)
+
+(defun get-recommendations (w)
+  (interactive)
+  (url-retrieve (concat "http://127.0.0.1:5000/req?word=" w)
+		(lambda (status) (goto-char url-http-end-of-headers)
+		  (setq top-words (alist-get 'data (json-read)))
+		  (setq top-words-list ())
+		  (setq i 0)
+		  (while (< i (length top-words))
+		    (setq top-words-list (append top-words-list (list (elt top-words i))))
+		    (setq i (+ i 1))
+		    )
+		  (ivy-read "Pick a word\.\.\.\." top-words-list
+			    :action (lambda (x)
+				      (with-ivy-window
+					(insert (concat " " x))
+					)
+				      )
+			    )
+		  )
+		)
+  )
+
+
+(defun lm-ac ()
+  (interactive)
+  (backward-kill-word 1)
+  (yank)
+  (get-recommendations (string-trim-right (car kill-ring)))
+  )
