@@ -14,7 +14,7 @@ def main():
     parser = ArgumentParser()
     app = Flask(__name__)
 
-    smoothing_choices = ["laplace", "laplace_gt", "gt_mle", "mle", "interpolated", "stupid", "katz", "kn"]
+    smoothing_choices = ["laplace", "laplace_gt", "gt_mle", "mle", "interpolated", "stupid", "katz"]
     action_choices = ["perplexity", "generate", "server"]
     parser.add_argument("--n", type=int, help="Number of n-grams to use (default: bigrams)", default=2, choices = [1,2,3])
     parser.add_argument("--smoothing", type=str, help="Which type of smoothing to use default laplace", default="laplace", choices=smoothing_choices)
