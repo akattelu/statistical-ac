@@ -4,7 +4,7 @@ SAC is primarily a queryable server-side application. It uses bigram
 language models to statistically predict what is likely to be a next
 word, given the previous word. 
 
-[[https://github.com/akattelu/statistical-ac/blob/master/esac_example.gif]]
+![Emacs auto complete example](https://github.com/akattelu/statistical-ac/blob/master/esac_example.gif)
 
 ## Getting Started
 
