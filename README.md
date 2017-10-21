@@ -4,6 +4,8 @@ SAC is primarily a queryable server-side application. It uses bigram
 language models to statistically predict what is likely to be a next
 word, given the previous word. 
 
+[[https://github.com/akattelu/statistical-ac/blob/master/esac_example.gif]]
+
 ## Getting Started
 
 ### Requirements
@@ -24,13 +26,12 @@ word, given the previous word.
 
 ## Usage
 * Running the application with the -h flag displays the help usage text
-* Run the server with the following command:
+* Run the server with the following command(Currently the only
+  supported option for n is 2. I am working on including 3-5 grams):
+
 ```
 python3 model.py --n 2 --smoothing interpolated --train-file penn/train.txt --dev-file penn/valid.txt --test-file penn/test.txt  --action server
 ```
-
-	Currently the only supported option for n is 2. I am working on
-	including 3-5 grams.
 
 * The terminal will hang, and the server will start running.
 * Send a get request to localhost:5000/req with the word parameter as
@@ -120,7 +121,10 @@ model on the specified test file, and print out the perplexity.
 ```
 python3 model.py --n 2 --smoothing interpolated --train-file penn/train.txt --dev-file penn/valid.txt --test-file penn/test.txt  --action perplexity
 ```
-p
+
+The measure of perplexity will be printed:
+
 ```
 Perplexity 196.01943269418516
 ```
+
